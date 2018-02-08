@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material'; 
+import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -20,6 +20,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { PromotionService } from './services/promotion.service';
 import { LeadersService } from './services/leaders.service';
 import { LeaderdetailComponent } from './leaderdetail/leaderdetail.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -32,14 +34,19 @@ import { LeaderdetailComponent } from './leaderdetail/leaderdetail.component';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LeaderdetailComponent
+    LeaderdetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    FormsModule,
     AppRoutingModule
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   providers: [DishService, PromotionService, LeadersService],
   bootstrap: [AppComponent]
