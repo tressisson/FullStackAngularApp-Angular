@@ -23,6 +23,8 @@ import { LeaderdetailComponent } from './leaderdetail/leaderdetail.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms'; 
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     LoginComponent
