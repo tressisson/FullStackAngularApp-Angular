@@ -83,6 +83,7 @@
         </td>
         <td>
           <md-select placeholder="How?" formControlName="contacttype">
+
             <md-option *ngFor="let ctype of contactType" [value]="ctype">
               {{ ctype }}
             </md-option>

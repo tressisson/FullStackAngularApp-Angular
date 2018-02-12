@@ -13,7 +13,7 @@
         <p>{{dish.description}}</p>
       </md-card-content>
       <md-card-actions>
-          <button md-button (click)="goBack()">BACK</button>
+        <button md-button (click)="goBack()">BACK</button>
         <button md-button>Like</button>
         <button md-button>Share</button>
       </md-card-actions>
@@ -23,13 +23,56 @@
 
   <div fxFlex="40" style="margin:auto">
     <h3>Comments</h3>
-   <md-list *ngIf="dish">
-     <md-list-item  class="comments" *ngFor="let comm of dish.comments">    
-      {{comm.comment}}<br>
-      {{comm.rating}} &nbsp;Stars<br>
-      --{{comm.author}}&nbsp;&nbsp;{{comm.date | date}}
-     </md-list-item>
-   </md-list>
+    <md-list *ngIf="dish">
+      <md-list-item class="comments" *ngFor="let comm of dish.comments">
+        {{comm.comment}}
+        <br> {{comm.rating}} &nbsp;Stars
+        <br> --{{comm.author}}&nbsp;&nbsp;{{comm.date | date}}
+      </md-list-item>
+    </md-list>
+
+
+    <div *ngIf="commentForm.valid">
+      <md-list>
+        <md-list-item class="comments">
+          <br> {{commentForm.get('comment').value}}
+          <br> {{commentForm.get('rating').value}} &nbsp;Stars
+          <br> --{{commentForm.get('author').value}}
+
+        </md-list-item>
+      </md-list>
+    </div>
+
+
+    <h3>Leave a Comment</h3>
+
+    <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <p>
+        <md-input-container class="half-width" dividerColor="{{(commentForm.get('author').hasError('required') && commentForm.get('author').touched) ? 'warn' : 'primary'}}">
+          <input mdInput formControlName="author" placeholder="Your Name" type="text" required>
+          <md-hint>
+            <span [hidden]="!(commentForm.get('author').hasError('required') && commentForm.get('author').touched)">
+              Your name is required</span>
+          </md-hint>
+        </md-input-container>
+
+        <p>
+          <md-slider formControlName="rating" thumbLabel tickInterval="1" min="1" max="5" step="1" value="5"></md-slider>
+        </p>
+
+
+        <md-input-container class="full-width" dividerColor="{{(commentForm.get('comment').hasError('required') && commentForm.get('comment').touched) ? 'warn' : 'primary'}}">
+          <textarea mdInput formControlName="comment" placeholder="Your Comment" rows=5></textarea>
+          <md-hint>
+            <span [hidden]="!(commentForm.get('comment').hasError('required') && commentForm.get('comment').touched)">
+              your comment is required</span>
+          </md-hint>
+        </md-input-container>
+        <p>
+          <button type="submit" md-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+        </p>
+    </form>
+
   </div>
 
 </div>
