@@ -29,6 +29,9 @@ import { baseURL } from './shared/baseurl';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 import { HighlightDirective } from './directives/highlight.directive';
 
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   entryComponents: [LoginComponent ],
   providers: [DishService, PromotionService, LeadersService, { provide: 'BaseURL', useValue: baseURL }, ProcessHttpmsgService],
