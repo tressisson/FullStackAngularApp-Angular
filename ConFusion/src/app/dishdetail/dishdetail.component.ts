@@ -26,6 +26,7 @@ export class DishdetailComponent implements OnInit {
   comment: Comment;
   errMess: string;
   dishcopy = null;
+  prevNext: number;
 
 
   constructor(private dishservice: DishService,
@@ -39,16 +40,18 @@ export class DishdetailComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
     this.dishservice.getDish(id).subscribe(dish => this.dish = dish, errmess => this.errMess = <any>errmess);
-    /*
     this.route.params
       .switchMap((params: Params) => { return this.dishservice.getDish(+params['id']); })
       .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
         errmess => { this.dish = null; this.errMess = <any>errmess; });
-        */
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  setPrevNext(dishId): void {
+    this.prevNext = dishId;
   }
 
   createForm() {
