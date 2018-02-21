@@ -13,12 +13,20 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/switchmap';
+import { visibility, flyInOut, expand } from '../animations/app.animation';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    },
   animations: [
+    visibility(),
+    flyInOut(),
+    expand(),
     trigger('visibility', [
       state('shown', style({
         transform: 'scale(1.0)',
@@ -28,7 +36,7 @@ import 'rxjs/add/operator/switchmap';
         transform: 'scale(0.5)',
         opacity: 0
       })),
-      transition('* => *', animate('0.5s ease-in-out'))
+      transition('* => *', animate('0.5s ease-in-out')),
     ])
   ]
 })
